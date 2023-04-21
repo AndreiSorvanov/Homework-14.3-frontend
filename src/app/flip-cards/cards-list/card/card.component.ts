@@ -5,7 +5,7 @@ import {
   Input,
   Output,
 } from '@angular/core';
-import { ICard } from 'src/app/shared/interfaces/card';
+import { ICard } from 'src/app/shared/interfaces/ICard';
 
 @Component({
   selector: 'app-card',

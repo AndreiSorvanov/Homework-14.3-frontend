@@ -1,30 +1,43 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ICard } from 'src/app/shared/interfaces/card';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ICard } from 'src/app/shared/interfaces/ICard';
+import { FlippedCardsService } from 'src/app/shared/services/flippedCards.service';
 
 @Component({
   selector: 'app-cards-list',
   templateUrl: './cards-list.component.html',
   styleUrls: ['./cards-list.component.less'],
 })
-export class CardsListComponent {
+export class CardsListComponent implements OnInit {
   @Input()
   cards!: ICard[];
 
   @Output()
-  delete = new EventEmitter<number>();
+  delete = new EventEmitter<string>();
 
-  flippedCardIndex = -1;
+  constructor(public flippedCardsService: FlippedCardsService) {}
 
-  onClick(index: number) {
-    this.flippedCardIndex = this.flippedCardIndex === index ? -1 : index;
+  ngOnInit() {
+    this.flippedCardsService.initialize();
   }
 
-  onDelete(index: number) {
-    if (index < this.flippedCardIndex) {
-      this.flippedCardIndex--;
-    } else if (index === this.flippedCardIndex) {
-      this.flippedCardIndex = -1;
-    }
-    this.delete.emit(index);
+  onBtnClick() {
+    // this.flippedCardsIds = new Set();
+    this.flippedCardsService.clear();
+  }
+
+  onClick(id: string) {
+    // if (this.flippedCardsIds.has(id)) {
+    //   this.flippedCardsIds.delete(id);
+    // } else {
+    //   this.flippedCardsIds.add(id);
+    // }
+
+    this.flippedCardsService.flipCard(id);
+  }
+
+  onDelete(id: string) {
+    // this.flippedCardsIds.delete(id);
+    this.flippedCardsService.delete(id);
+    this.delete.emit(id);
   }
 }

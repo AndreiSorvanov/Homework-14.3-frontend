@@ -1,38 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ICard } from '../shared/interfaces/card';
-
-const data: ICard[] = [
-  {
-    title: 'Название карточки 1',
-    description:
-      'Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века.',
-  },
-  {
-    title: 'Название карточки 2',
-    description:
-      'Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века. Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века.',
-  },
-  {
-    title: 'Название карточки 3',
-    description:
-      'Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века.',
-  },
-  {
-    title: 'Название карточки 4',
-    description:
-      'Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века.',
-  },
-  {
-    title: 'Название карточки 5',
-    description:
-      'Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века.',
-  },
-  {
-    title: 'Название карточки 6',
-    description:
-      'Lorem Ipsum - это текст-"рыба", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной "рыбой" для текстов на латинице с начала XVI века.',
-  },
-];
+import { ICard } from '../shared/interfaces/ICard';
+import { CardsService } from '../shared/services/cards.service';
 
 @Component({
   selector: 'app-flip-cards',
@@ -42,15 +10,17 @@ const data: ICard[] = [
 export class FlipCardsComponent implements OnInit {
   cards: ICard[] = [];
 
+  constructor(public cardsService: CardsService) {}
+
   ngOnInit() {
-    this.cards = data;
+    this.cardsService.initialize();
   }
 
-  addCard(card: ICard) {
-    this.cards.push(card);
+  addCard(card: Omit<ICard, 'id'>) {
+    this.cardsService.addCard(card);
   }
 
-  deleteCard(index: number) {
-    this.cards.splice(index, 1);
+  deleteCard(id: string) {
+    this.cardsService.deleteCard(id);
   }
 }

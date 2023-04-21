@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TUI_VALIDATION_ERRORS } from '@taiga-ui/kit';
-import { ICard } from 'src/app/shared/interfaces/card';
+import { ICard } from 'src/app/shared/interfaces/ICard';
 
 @Component({
   selector: 'app-card-add-form',
@@ -26,7 +26,7 @@ import { ICard } from 'src/app/shared/interfaces/card';
 })
 export class CardAddFormComponent {
   @Output()
-  add = new EventEmitter<ICard>();
+  add = new EventEmitter<Omit<ICard, 'id'>>();
 
   isEdit = false;
 
@@ -36,7 +36,7 @@ export class CardAddFormComponent {
   });
 
   submit() {
-    const data: ICard = {
+    const data: Omit<ICard, 'id'> = {
       title: this.form.get('title')?.value!,
       description: this.form.get('description')?.value!,
     };
