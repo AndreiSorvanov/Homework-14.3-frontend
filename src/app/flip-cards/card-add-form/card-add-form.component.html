@@ -1,0 +1,35 @@
+<form class="form" [formGroup]="form" (submit)="submit()">
+  <h2 class="tui-text_h5 heading">Добавить карточку</h2>
+  <div class="tui-form__row">
+    <tui-input tuiTextfieldSize="m" formControlName="title">
+      Название
+    </tui-input>
+    <tui-error
+      formControlName="title"
+      [error]="[] | tuiFieldError | async"
+    ></tui-error>
+  </div>
+
+  <div class="tui-form__row">
+    <tui-text-area tuiTextfieldSize="m" formControlName="description">
+      Комментарий
+    </tui-text-area>
+    <tui-error
+      formControlName="description"
+      [error]="[] | tuiFieldError | async"
+    ></tui-error>
+  </div>
+
+  <div class="tui-form__row buttons">
+    <button
+      [disabled]="form.invalid"
+      tuiButton
+      class="tui-form__button add-button"
+      size="s"
+      type="submit"
+      appearance="custom"
+    >
+      Добавить карточку
+    </button>
+  </div>
+</form>

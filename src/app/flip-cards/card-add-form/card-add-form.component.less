@@ -1,0 +1,30 @@
+@import "~@taiga-ui/core/styles/taiga-ui-local";
+
+.form {
+  width: 400px;
+  margin: 0 auto 40px;
+  padding: 10px;
+}
+
+.heading {
+  text-align: center;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.add-button {
+  width: 100%;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  & [tuiWrapper][data-appearance="custom"] {
+    background: #ffdd2d;
+    color: black;
+  }
+}

@@ -1,0 +1,21 @@
+<div>
+  <button
+    tuiButton
+    class="tui-form__button list-button"
+    size="s"
+    type="button"
+    (click)="onBtnClick()"
+  >
+    Перевернуть все карты
+  </button>
+  <ul class="list-container">
+    <li class="list-item" *ngFor="let card of cards">
+      <app-card
+        [card]="card"
+        [isFlipped]="this.flippedCardsService.flippedCardsIds.has(card.id)"
+        (click)="onClick(card.id)"
+        (delete)="onDelete(card.id)"
+      ></app-card>
+    </li>
+  </ul>
+</div>

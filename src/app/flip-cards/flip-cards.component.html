@@ -1,0 +1,7 @@
+<div>
+  <app-card-add-form (add)="addCard($event)"></app-card-add-form>
+  <app-cards-list
+    [cards]="cardsService.cards"
+    (delete)="deleteCard($event)"
+  ></app-cards-list>
+</div>

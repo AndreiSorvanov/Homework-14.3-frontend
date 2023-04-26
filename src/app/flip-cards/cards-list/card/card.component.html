@@ -1,0 +1,20 @@
+<article
+  class="card-container"
+  [ngClass]="{ flipped: isFlipped }"
+  (transitionstart)="onTransitionStart($event)"
+  (transitionend)="onTransitionEnd($event)"
+>
+  <div class="front">
+    <div class="content">
+      <div class="close" (click)="onCloseBtnClick($event)"></div>
+      <div class="title">{{ card.title }}</div>
+    </div>
+  </div>
+  <div class="back">
+    <div class="content">
+      <div class="close" (click)="onCloseBtnClick($event)"></div>
+      <div class="title">{{ card.title }}</div>
+      <div class="description">{{ card.description }}</div>
+    </div>
+  </div>
+</article>
