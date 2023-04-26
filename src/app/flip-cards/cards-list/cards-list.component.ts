@@ -21,22 +21,14 @@ export class CardsListComponent implements OnInit {
   }
 
   onBtnClick() {
-    // this.flippedCardsIds = new Set();
     this.flippedCardsService.clear();
   }
 
   onClick(id: string) {
-    // if (this.flippedCardsIds.has(id)) {
-    //   this.flippedCardsIds.delete(id);
-    // } else {
-    //   this.flippedCardsIds.add(id);
-    // }
-
     this.flippedCardsService.flipCard(id);
   }
 
   onDelete(id: string) {
-    // this.flippedCardsIds.delete(id);
     this.flippedCardsService.delete(id);
     this.delete.emit(id);
   }
